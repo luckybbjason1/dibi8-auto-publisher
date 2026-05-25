@@ -1,0 +1,23 @@
+__pycache__/
+*.pyc
+.env
+*.env
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+
+# 编辑器/系统
+.DS_Store
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# 本地测试 (X 凭证测试, 暂停使用, 不入 git)
+scripts/test_x_credentials.py
+
+# 本地运行日志
+*.log
+nohup.out

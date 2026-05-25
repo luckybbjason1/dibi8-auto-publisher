@@ -1,0 +1,41 @@
+name: HN Submit Recommendations (Weekly)
+
+# 每周二 UTC 14:00 (= US PT 06:00 周二) — HN 黄金提交窗口
+# 生成本周 HN 推荐 markdown,主人手机查 GitHub repo 点 1 个 URL 即可一键提交
+# V2 upgrade 2026-05-25
+
+on:
+  schedule:
+    - cron: '0 14 * * 2'   # Tuesday 14:00 UTC
+  workflow_dispatch:        # 手动触发
+
+permissions:
+  contents: write           # push hn-recommendations-YYYY-MM-DD.md back
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Generate HN recommendations
+        run: python -m src.helpers.hn_submit
+
+      - name: Commit recommendation file
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/hn-recommendations-*.md
+          git diff --cached --quiet || git commit -m "chore(hn): weekly HN submit recommendations"
+          git push
