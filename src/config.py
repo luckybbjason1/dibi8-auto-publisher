@@ -24,11 +24,9 @@ INTER_PLATFORM_DELAY_MAX = int(os.environ.get("INTER_PLATFORM_DELAY_MAX", "300")
 # Skip publishing randomly (probability 0-1) to appear less regular
 RANDOM_SKIP_PROBABILITY = float(os.environ.get("RANDOM_SKIP_PROBABILITY", "0.15"))
 
-# --- Twitter/X ---
-TWITTER_API_KEY = os.environ.get("TWITTER_API_KEY", "")
-TWITTER_API_SECRET = os.environ.get("TWITTER_API_SECRET", "")
-TWITTER_ACCESS_TOKEN = os.environ.get("TWITTER_ACCESS_TOKEN", "")
-TWITTER_ACCESS_SECRET = os.environ.get("TWITTER_ACCESS_SECRET", "")
+# --- Twitter/X — REMOVED 2026-05-26 ---
+# 原因: 2026-02 起 X 砍 free tier 走 Pay-Per-Use, 带 URL 推 $0.20/条,
+# dibi8 当前 ROI 不划算. 改 home-hermes/x-manual-posts/ 手动发推工作流, $0 成本.
 
 # --- Facebook ---
 FACEBOOK_PAGE_ID = os.environ.get("FACEBOOK_PAGE_ID", "")

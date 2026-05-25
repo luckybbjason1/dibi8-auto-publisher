@@ -17,7 +17,8 @@ from . import config
 from .scraper import get_unpublished_article, save_published
 # V2 upgrade 2026-05-25: 移除 linkedin/medium (token 无解) + hashnode (Pro 才能 API),
 # 加 devto (海外程序员核心 + 免费 + canonical 友好)
-from .publishers import twitter, facebook, reddit, devto
+# 2026-05-26: 移除 twitter (Pay-Per-Use $0.20/带URL推, ROI 不划算, 改手动)
+from .publishers import facebook, reddit, devto
 from .safety import jitter_delay, human_delay
 
 logging.basicConfig(
@@ -27,7 +28,6 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 PLATFORMS = [
-    ("twitter", twitter),
     ("facebook", facebook),
     ("reddit", reddit),
     ("devto", devto),

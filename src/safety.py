@@ -15,8 +15,8 @@ RATE_LIMITS_FILE = Path(config.PUBLISHED_FILE).parent / "rate_limits.json"
 
 # Per-platform daily posting caps (conservative to avoid bans)
 # 2026-05-25 V2 upgrade: 移除 medium/linkedin/hashnode (API 死/付费), 加 devto
+# 2026-05-26: 移除 twitter (Pay-Per-Use $0.20/带URL推, ROI 不划算, 改手动发)
 DAILY_CAPS = {
-    "twitter": 6,    # 含 URL post $0.20/次 (2026-02 起付费),建议主人审慎开启
     "facebook": 4,   # Pages can post more, but 4 is natural
     "reddit": 2,     # Reddit heavily penalizes frequent self-promotion
     "devto": 3,      # Dev.to 友好,但仍要节制保持质量
@@ -24,7 +24,6 @@ DAILY_CAPS = {
 
 # Minimum hours between posts on the same platform
 MIN_HOURS_BETWEEN = {
-    "twitter": 2,
     "facebook": 3,
     "reddit": 8,
     "devto": 4,

@@ -21,18 +21,9 @@ HASHTAG_POOLS = {
                     "#AITools", "#Developer", "#Tutorial", "#Guide", "#2026"],
 }
 
-# Twitter post templates (varied to avoid pattern detection)
-TWITTER_TEMPLATES = [
-    "{title}\n\n{short_desc}\n\n{url}\n\n{hashtags}",
-    "{emoji} {title}\n\n{url}\n\n{hashtags}",
-    "{hook}\n\n{title}\n{url}\n\n{hashtags}",
-    "{short_desc}\n\n{title}\n{url}",
-    "{emoji} New on dibi8:\n\n{title}\n\n{url}\n{hashtags}",
-    "Worth checking out:\n{title}\n\n{short_desc}\n\n{url}",
-    "{title}\n\n{url}",
-]
+# TWITTER_TEMPLATES 移除 2026-05-26 — 走手动发推工作流
 
-# Hook phrases for tweets
+# Hook phrases (used by Facebook/Reddit)
 HOOKS = [
     "Just discovered this",
     "This is worth a look",
@@ -102,36 +93,7 @@ def pick_hashtags(article: Article, count: int = 3) -> str:
     return " ".join(selected)
 
 
-def format_twitter(article: Article) -> str:
-    """Generate a varied tweet for the article."""
-    template = random.choice(TWITTER_TEMPLATES)
-    hashtags = pick_hashtags(article, count=random.randint(2, 3))
-    hook = random.choice(HOOKS)
-    emoji = random.choice(EMOJIS)
-
-    short_desc = article.description
-    if len(short_desc) > 120:
-        short_desc = short_desc[:117] + "..."
-
-    text = template.format(
-        title=article.title,
-        short_desc=short_desc,
-        description=article.description[:200],
-        url=article.url,
-        hashtags=hashtags,
-        hook=hook,
-        emoji=emoji,
-    )
-
-    # Enforce 280 char limit
-    if len(text) > 280:
-        text = f"{article.title[:180]}\n\n{article.url}\n\n{hashtags}"
-    if len(text) > 280:
-        text = f"{article.title[:200]}\n\n{article.url}"
-    if len(text) > 280:
-        text = f"{article.title[:250]}\n{article.url}"
-
-    return text
+# format_twitter() 移除 2026-05-26 — Twitter Pay-Per-Use ROI 不划算, 改手动发推
 
 
 def format_facebook(article: Article) -> str:
