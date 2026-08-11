@@ -147,6 +147,7 @@
     "https://dibi8.com/tags/a2a/",
     "https://dibi8.com/tags/anthropic/",
     "https://dibi8.com/tags/supabase/",
-    "https://dibi8.com/resources/data-science/timesfm-google-time-series-foundation-model/"
+    "https://dibi8.com/resources/data-science/timesfm-google-time-series-foundation-model/",
+    "https://dibi8.com/resources/dev-utils/juicefs-distributed-posix-file-system-redis-s3-cloud-storage/"
   ]
 }
